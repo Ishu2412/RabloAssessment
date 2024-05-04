@@ -73,7 +73,7 @@ app.post("/login", async (req, res) => {
       email: req.body.email,
       password: req.body.password,
     };
-    const user = await getUser(data);
+    const user = await getUser(data.email);
     if (user) {
       const storedHashedPassword = user.password;
       bcrypt.compare(data.password, storedHashedPassword, (err, result) => {
@@ -90,8 +90,8 @@ app.post("/login", async (req, res) => {
     } else {
       res.status(401).send(`User not found`);
     }
-  } catch {
-    res.status(500).send(`Internal Server Error`);
+  } catch (err) {
+    res.status(500).send(`Internal Server Error ${err}`);
   }
 });
 
