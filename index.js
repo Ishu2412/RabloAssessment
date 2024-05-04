@@ -37,9 +37,7 @@ app.post("/register", async (req, res) => {
   try {
     const email = req.body.email;
     const password = req.body.password;
-    const check = await getUser({
-      email,
-    });
+    const check = await getUser(email);
     console.log(email);
     console.log(password);
     console.log(check);
