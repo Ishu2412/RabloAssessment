@@ -39,10 +39,10 @@ app.post("/register", async (req, res) => {
     const password = req.body.password;
     const check = await getUser({
       email,
-      password,
     });
     console.log(email);
     console.log(password);
+    console.log(check);
 
     //if user already exists
     if (check) {
